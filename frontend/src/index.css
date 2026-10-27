@@ -1,0 +1,70 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  html {
+    font-size: 110%;
+    min-height: 100%;
+    background-color: #f8fafc;
+  }
+
+  html.dark {
+    background-color: #020817;
+  }
+
+  body {
+    min-height: 100vh;
+    line-height: 1.6;
+    background: #f8fafc;
+    color: #0f172a;
+    transition: background-color 0.2s ease, color 0.2s ease;
+  }
+
+  html.dark body {
+    background: #020817;
+    color: #e2e8f0;
+  }
+
+  #root {
+    min-height: 100vh;
+    background: transparent;
+  }
+}
+
+@layer utilities {
+  @keyframes slideIn {
+    from {
+      transform: translateY(1rem);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-slide-in {
+    animation: slideIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.15s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  /* Allow table cells to shrink below content width to prevent horizontal overflow */
+  table th,
+  table td {
+    min-width: 0;
+    overflow-wrap: break-word;
+  }
+}
